@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "node deploy.cjs"
+    "deploy": "node deploy.cjs",
+    "check": "node check-deploy.js"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",

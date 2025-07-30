@@ -54,14 +54,12 @@ onMounted(() => {
   --wechat-orange: #ff9500;
 }
 
-/* 基础样式重置 */
 body {
   background-color: var(--wechat-bg);
   font-size: 16px;
   line-height: 1.4;
 }
 
-/* 微信风格的按钮 */
 .wechat-btn {
   background-color: var(--wechat-green);
   color: white;
