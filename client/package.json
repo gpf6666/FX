@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && mv dist docs && gh-pages -d docs"
+    "deploy": "node deploy.cjs"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
