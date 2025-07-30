@@ -65,12 +65,25 @@
         content: "\e6b2";
       }
     </style>
-    <script type="module" crossorigin src="/FX/assets/index-BoG8iAnr.js"></script>
-    <link rel="modulepreload" crossorigin href="/FX/assets/vendor-BrOh9MUQ.js">
-    <link rel="modulepreload" crossorigin href="/FX/assets/element-De4fDZDy.js">
+    <script type="module" crossorigin src="/FX/assets/index-BxLzcfps.js"></script>
+    <link rel="modulepreload" crossorigin href="/FX/assets/vendor-BcG0S5d6.js">
+    <link rel="modulepreload" crossorigin href="/FX/assets/element-C7QMH65i.js">
     <link rel="stylesheet" crossorigin href="/FX/assets/index-BwstpA15.css">
   </head>
   <body>
     <div id="app"></div>
+    <script>
+      // GitHub Pages SPA 路由处理
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
   </body>
 </html> 

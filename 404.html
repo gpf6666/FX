@@ -2,18 +2,21 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <title>重定向中...</title>
+    <title>微信聊天</title>
+    <script type="text/javascript">
+        // 单页应用路由处理
+        var pathSegmentsToKeep = 1;
+        var l = window.location;
+        l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+            l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash
+        );
+    </script>
 </head>
 <body>
-    <script>
-        // 获取当前路径
-        var path = window.location.pathname;
-        var search = window.location.search;
-        var hash = window.location.hash;
-        
-        // 重定向到根路径，保持查询参数和哈希
-        window.location.href = '/' + search + hash;
-    </script>
-    <p>正在重定向...</p>
+    <div id="app"></div>
 </body>
 </html> 
