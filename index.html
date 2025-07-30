@@ -65,10 +65,23 @@
         content: "\e6b2";
       }
     </style>
-    <script type="module" crossorigin src="/FX/assets/index-CZ8L4ZTb.js"></script>
-    <link rel="modulepreload" crossorigin href="/FX/assets/vendor-BrOh9MUQ.js">
-    <link rel="modulepreload" crossorigin href="/FX/assets/element-De4fDZDy.js">
-    <link rel="stylesheet" crossorigin href="/FX/assets/index-BwstpA15.css">
+    <script type="text/javascript">
+      // 处理 GitHub Pages 的 SPA 路由
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <script type="module" crossorigin src="/FX/assets/index-zPCyQuwE.js"></script>
+    <link rel="modulepreload" crossorigin href="/FX/assets/vendor-BU-zYVMe.js">
+    <link rel="modulepreload" crossorigin href="/FX/assets/element-LGSq3epL.js">
+    <link rel="stylesheet" crossorigin href="/FX/assets/index-D_IHfSDk.css">
   </head>
   <body>
     <div id="app"></div>

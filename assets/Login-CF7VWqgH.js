@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{y as o,z as t}from"./vendor-BrOh9MUQ.js";const a={class:"wechat-page login-page"},c={__name:"Login",setup(s){return(_,n)=>(t(),o("div",a," 444444 "))}},i=e(c,[["__scopeId","data-v-9ec15455"]]);export{i as default};
