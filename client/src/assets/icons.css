@@ -1,0 +1,191 @@
+/* 图标字体样式 */
+@font-face {
+  font-family: 'iconfont';
+  src: url('data:font/woff2;charset=utf-8;base64,d09GMgABAAAAAA...') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 用户图标 */
+.icon-user:before {
+  content: "\e7ae";
+}
+
+/* 设置图标 */
+.icon-settings:before {
+  content: "\e78e";
+}
+
+/* 搜索图标 */
+.icon-search:before {
+  content: "\e8ef";
+}
+
+/* 聊天图标 */
+.icon-chat:before {
+  content: "\e6bc";
+}
+
+/* 表情图标 */
+.icon-emoji:before {
+  content: "\e6b9";
+}
+
+/* 图片图标 */
+.icon-image:before {
+  content: "\e6b8";
+}
+
+/* 语音图标 */
+.icon-voice:before {
+  content: "\e6b7";
+}
+
+/* 麦克风图标 */
+.icon-microphone:before {
+  content: "\e6b6";
+}
+
+/* 信息图标 */
+.icon-info:before {
+  content: "\e6b5";
+}
+
+/* 加载图标 */
+.icon-loading:before {
+  content: "\e6b4";
+  animation: spin 1s linear infinite;
+}
+
+/* 单勾图标 */
+.icon-check:before {
+  content: "\e6b3";
+}
+
+/* 双勾图标 */
+.icon-check-double:before {
+  content: "\e6b2";
+}
+
+/* 旋转动画 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 备用图标 - 使用Unicode字符 */
+.icon-user:before {
+  content: "👤";
+}
+
+.icon-settings:before {
+  content: "⚙️";
+}
+
+.icon-search:before {
+  content: "🔍";
+}
+
+.icon-chat:before {
+  content: "💬";
+}
+
+.icon-emoji:before {
+  content: "😊";
+}
+
+.icon-image:before {
+  content: "🖼️";
+}
+
+.icon-voice:before {
+  content: "🎤";
+}
+
+.icon-microphone:before {
+  content: "🎙️";
+}
+
+.icon-info:before {
+  content: "ℹ️";
+}
+
+.icon-loading:before {
+  content: "⏳";
+  animation: spin 1s linear infinite;
+}
+
+.icon-check:before {
+  content: "✓";
+}
+
+.icon-check-double:before {
+  content: "✓✓";
+}
+
+/* 新增图标 */
+.icon-back:before {
+  content: "←";
+}
+
+.icon-arrow-right:before {
+  content: "→";
+}
+
+.icon-lock:before {
+  content: "🔒";
+}
+
+.icon-notification:before {
+  content: "🔔";
+}
+
+.icon-sound:before {
+  content: "🔊";
+}
+
+.icon-vibration:before {
+  content: "📳";
+}
+
+.icon-eye:before {
+  content: "👁️";
+}
+
+.icon-last-seen:before {
+  content: "🕐";
+}
+
+.icon-help:before {
+  content: "❓";
+}
+
+.icon-logout:before {
+  content: "🚪";
+}
+
+.icon-add:before {
+  content: "➕";
+}
+
+.icon-group:before {
+  content: "👥";
+}
+
+.icon-moments:before {
+  content: "📱";
+}
+
+ 
