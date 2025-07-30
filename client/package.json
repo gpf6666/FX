@@ -7,19 +7,20 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && mv dist docs && gh-pages -d docs"
   },
   "dependencies": {
-    "vue": "^3.3.8",
-    "vue-router": "^4.2.5",
-    "pinia": "^2.1.7",
-    "element-plus": "^2.4.4",
     "@element-plus/icons-vue": "^2.1.0",
+    "axios": "^1.6.2",
+    "element-plus": "^2.4.4",
+    "pinia": "^2.1.7",
     "socket.io-client": "^4.7.4",
-    "axios": "^1.6.2"
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",
+    "gh-pages": "^6.3.0",
     "vite": "^5.0.0"
   }
-} 
+}
