@@ -5,6 +5,7 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import router from './router'
 import './assets/icons.css'
+import './config/api' // 导入 API 配置，设置 axios baseURL
 
 const app = createApp(App)
 
