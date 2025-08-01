@@ -1,24 +1,23 @@
-// Render 环境配置
-const RENDER_CONFIG = {
+// 环境配置
+const ENV_CONFIG = {
   // 开发环境
   development: {
-    API_URL: 'http://localhost:3000',
-    SOCKET_URL: 'http://localhost:3000',
+    API_URL: 'https://surviving-chandal-starkhome-2f8d1e2b.koyeb.app',
+    SOCKET_URL: 'https://surviving-chandal-starkhome-2f8d1e2b.koyeb.app',
     BASE_URL: '/'
   },
-  // 生产环境 (Render)
+  // 生产环境 (Koyeb)
   production: {
-    // 部署后需要更新为实际的 Render URL
-    API_URL: 'https://wechat-clone-server.onrender.com',
-    SOCKET_URL: 'https://wechat-clone-server.onrender.com',
-    BASE_URL: '/FX/'
+    API_URL: 'https://surviving-chandal-starkhome-2f8d1e2b.koyeb.app',
+    SOCKET_URL: 'https://surviving-chandal-starkhome-2f8d1e2b.koyeb.app',
+    BASE_URL: '/'
   }
 };
 
 // 获取当前环境
-const getRenderConfig = () => {
+const getEnvConfig = () => {
   const mode = import.meta.env.MODE || 'development';
-  return RENDER_CONFIG[mode] || RENDER_CONFIG.development;
+  return ENV_CONFIG[mode] || ENV_CONFIG.development;
 };
 
-export default getRenderConfig(); 
+export default getEnvConfig(); 
