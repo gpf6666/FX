@@ -3,16 +3,4 @@ services:
     name: wechat-clone-server
     env: node
     plan: free
-    buildCommand: chmod +x render-build.sh && ./render-build.sh
-    startCommand: cd server && npm start
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: MONGODB_URI
-        sync: false
-      - key: JWT_SECRET
-        sync: false
-      - key: CLIENT_URL
-        value: https://gpf6666.github.io
-      - key: RENDER
-        value: true 
+    rootDir: server 
