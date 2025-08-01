@@ -24,6 +24,53 @@ router.get('/', authenticateToken, async (req, res) => {
   }
 });
 
+// 获取推荐用户（用于添加好友）
+router.get('/recommended', authenticateToken, async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.user.userId);
+    const currentUserFriends = currentUser.friends || [];
+    
+    // 获取推荐用户（排除自己和好友）
+    const recommendedUsers = await User.find({
+      _id: { 
+        $ne: req.user.userId,
+        $nin: currentUserFriends
+      }
+    })
+    .select('username nickname avatar status')
+    .limit(10);
+    
+    // 检查是否已经发送过好友请求
+    const currentUserSentRequests = await FriendRequest.find({
+      sender: req.user.userId,
+      status: 'pending'
+    });
+    
+    const usersWithStatus = recommendedUsers.map(user => {
+      const requestSent = currentUserSentRequests.some(request => 
+        request.receiver.toString() === user._id.toString()
+      );
+      
+      return {
+        ...user.toObject(),
+        isFriend: false,
+        requestSent
+      };
+    });
+
+    res.json({
+      success: true,
+      users: usersWithStatus
+    });
+  } catch (error) {
+    console.error('获取推荐用户错误:', error);
+    res.status(500).json({
+      success: false,
+      message: '服务器错误'
+    });
+  }
+});
+
 // 搜索用户（支持用户名和昵称搜索）
 router.get('/search', authenticateToken, async (req, res) => {
   try {

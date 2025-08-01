@@ -29,7 +29,7 @@ export const useAuthStore = defineStore('auth', () => {
   const login = async (credentials) => {
     loading.value = true
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, credentials)
+      const response = await axios.post('/api/auth/login', credentials)
       if (response.data.success) {
         setToken(response.data.token)
         user.value = response.data.user
@@ -50,7 +50,7 @@ export const useAuthStore = defineStore('auth', () => {
   const register = async (userData) => {
     loading.value = true
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, userData)
+      const response = await axios.post('/api/auth/register', userData)
       if (response.data.success) {
         setToken(response.data.token)
         user.value = response.data.user
@@ -72,7 +72,7 @@ export const useAuthStore = defineStore('auth', () => {
     if (!token.value) return
     
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/auth/me`)
+      const response = await axios.get('/api/auth/me')
       if (response.data.success) {
         user.value = response.data.user
       }
