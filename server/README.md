@@ -1,6 +1,6 @@
 # WeChat Clone Server
 
-仿微信聊天应用后端服务，支持 Glitch 部署。
+仿微信聊天应用后端服务，支持 Railway 部署。
 
 ## 功能特性
 
@@ -42,11 +42,11 @@
    npm run dev
    ```
 
-### Glitch 部署
+### Railway 部署
 
-1. 访问 [glitch.com](https://glitch.com)
+1. 访问 [railway.app](https://railway.app)
 2. 创建新项目，导入此目录
-3. 在 `.env` 文件中设置环境变量
+3. 在环境变量中设置配置
 4. 等待自动部署
 
 ## 环境变量
@@ -117,11 +117,11 @@ server/
 
 ## 部署
 
-### Glitch 部署（推荐）
+### Railway 部署（推荐）
 
-1. 访问 [glitch.com](https://glitch.com)
-2. 点击 "New Project" → "Import from GitHub"
-3. 输入 GitHub 仓库地址
+1. 访问 [railway.app](https://railway.app)
+2. 点击 "New Project" → "Deploy from GitHub repo"
+3. 选择 GitHub 仓库
 4. 选择 `server` 目录
 5. 设置环境变量
 6. 等待自动部署

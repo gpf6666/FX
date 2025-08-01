@@ -1,6 +1,6 @@
 // Socket.IO 配置
-import glitchConfig from './glitch.js'
+import railwayConfig from './railway.js'
 
-const SOCKET_URL = glitchConfig.SOCKET_URL
+const SOCKET_URL = railwayConfig.SOCKET_URL
 
 export default SOCKET_URL 
