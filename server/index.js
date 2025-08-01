@@ -301,6 +301,14 @@ setInterval(() => {
 app.set('io', io);
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-}); 
+
+// 兼容 Vercel 无服务器环境
+if (process.env.VERCEL) {
+  // Vercel 环境 - 导出 app 实例
+  module.exports = app;
+} else {
+  // 传统服务器环境（阿里云、本地开发等）- 启动服务器监听
+  server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+} 
