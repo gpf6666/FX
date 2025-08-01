@@ -45,8 +45,8 @@ const mongooseOptions = {
   useUnifiedTopology: true
 };
 
-// 在 Railway 环境中添加 SSL 选项
-if (process.env.RAILWAY_ENVIRONMENT || process.env.PROJECT_DOMAIN) {
+// 在 Render 环境中添加 SSL 选项
+if (process.env.RENDER) {
   mongooseOptions.ssl = true;
   mongooseOptions.sslValidate = false;
 }
@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
     version: '1.0.0',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
-    platform: process.env.RAILWAY_ENVIRONMENT ? 'Railway' : (process.env.PROJECT_DOMAIN ? 'Glitch' : 'Local'),
+    platform: process.env.RENDER ? 'Render' : 'Local',
     endpoints: {
       auth: '/api/auth',
       users: '/api/users',
@@ -337,5 +337,5 @@ server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📱 API available at http://localhost:${PORT}`);
   console.log(`🔌 Socket.IO available at http://localhost:${PORT}`);
-  console.log(`🌐 Platform: ${process.env.RAILWAY_ENVIRONMENT ? 'Railway' : (process.env.PROJECT_DOMAIN ? 'Glitch' : 'Local')}`);
+  console.log(`🌐 Platform: ${process.env.RENDER ? 'Render' : 'Local'}`);
 }); 

@@ -1,6 +1,6 @@
 // Socket.IO 配置
-import railwayConfig from './railway.js'
+import renderConfig from './render.js'
 
-const SOCKET_URL = railwayConfig.SOCKET_URL
+const SOCKET_URL = renderConfig.SOCKET_URL
 
 export default SOCKET_URL 

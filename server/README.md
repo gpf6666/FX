@@ -1,6 +1,6 @@
 # WeChat Clone Server
 
-仿微信聊天应用后端服务，支持 Railway 部署。
+仿微信聊天应用后端服务，支持 Render 部署。
 
 ## 功能特性
 
@@ -42,9 +42,9 @@
    npm run dev
    ```
 
-### Railway 部署
+### Render 部署
 
-1. 访问 [railway.app](https://railway.app)
+1. 访问 [render.com](https://render.com)
 2. 创建新项目，导入此目录
 3. 在环境变量中设置配置
 4. 等待自动部署
@@ -117,14 +117,16 @@ server/
 
 ## 部署
 
-### Railway 部署（推荐）
+### Render 部署（推荐）
 
-1. 访问 [railway.app](https://railway.app)
-2. 点击 "New Project" → "Deploy from GitHub repo"
-3. 选择 GitHub 仓库
-4. 选择 `server` 目录
-5. 设置环境变量
-6. 等待自动部署
+1. 访问 [render.com](https://render.com)
+2. 点击 "New +" → "Web Service"
+3. 选择 "Connect a repository"
+4. 选择 GitHub 仓库
+5. 配置构建命令：`cd server && npm install`
+6. 配置启动命令：`cd server && npm start`
+7. 设置环境变量
+8. 等待自动部署
 
 ### 其他平台
 
