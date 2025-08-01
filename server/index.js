@@ -19,7 +19,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL || (process.env.NODE_ENV === 'production' ? "https://gpf6666.github.io" : "http://localhost:5173"),
     methods: ["GET", "POST"]
   }
 });
