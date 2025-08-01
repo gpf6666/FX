@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: wechat-clone-server
-    env: node
-    plan: free
-    rootDir: server 
