@@ -49,6 +49,24 @@ mongoose.connect(process.env.MONGODB_URI)
 // 静态文件服务
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// 根路径欢迎页面
+app.get('/', (req, res) => {
+  res.json({
+    message: 'WeChat Clone API Server',
+    status: 'running',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development',
+    endpoints: {
+      auth: '/api/auth',
+      users: '/api/users',
+      chats: '/api/chats',
+      moments: '/api/moments',
+      upload: '/api/upload'
+    }
+  });
+});
+
 // 路由
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
