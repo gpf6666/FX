@@ -9,6 +9,7 @@ require('dotenv').config();
 // 导入环境变量验证工具
 const { validateEnvironment, logEnvInfo } = require('./utils/envValidator');
 
+// 导入路由
 const { router: authRoutes } = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const chatRoutes = require('./routes/chats');
@@ -19,7 +20,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: process.env.CLIENT_URL || (process.env.NODE_ENV === 'production' ? "https://gpf6666.github.io" : "http://localhost:5173"),
+    origin: process.env.CLIENT_URL || "https://gpf6666.github.io",
     methods: ["GET", "POST"]
   }
 });
@@ -39,7 +40,18 @@ try {
 }
 
 // 数据库连接
-mongoose.connect(process.env.MONGODB_URI)
+const mongooseOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+};
+
+// 在 Glitch 环境中添加 SSL 选项
+if (process.env.PROJECT_DOMAIN) {
+  mongooseOptions.ssl = true;
+  mongooseOptions.sslValidate = false;
+}
+
+mongoose.connect(process.env.MONGODB_URI, mongooseOptions)
   .then(() => console.log('✅ MongoDB connected'))
   .catch(err => {
     console.error('❌ MongoDB connection error:', err);
@@ -57,6 +69,7 @@ app.get('/', (req, res) => {
     version: '1.0.0',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
+    platform: 'Glitch',
     endpoints: {
       auth: '/api/auth',
       users: '/api/users',
@@ -318,15 +331,11 @@ setInterval(() => {
 // 导出io实例供路由使用
 app.set('io', io);
 
+// Glitch 使用 process.env.PORT
 const PORT = process.env.PORT || 3000;
-
-// 兼容 Vercel 无服务器环境
-if (process.env.VERCEL) {
-  // Vercel 环境 - 导出 app 实例
-  module.exports = app;
-} else {
-  // 传统服务器环境（阿里云、本地开发等）- 启动服务器监听
-  server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-} 
+server.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`📱 API available at http://localhost:${PORT}`);
+  console.log(`🔌 Socket.IO available at http://localhost:${PORT}`);
+  console.log(`🌐 Platform: ${process.env.PROJECT_DOMAIN ? 'Glitch' : 'Local'}`);
+}); 
