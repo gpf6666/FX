@@ -17,28 +17,13 @@
     "mongoose": "8.0.3",
     "multer": "1.4.5-lts.1",
     "socket.io": "4.7.4",
-    "uuid": "9.0.1"
+    "uuid": "9.0.1",
+    "@vercel/node": "^1.16.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2",
-    "@vercel/node": "^1.16.0"
+    "nodemon": "^3.0.2"
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "vercel": {
-    "version": 2,
-    "builds": [
-      {
-        "src": "index.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "index.js"
-      }
-    ]
   }
 }
