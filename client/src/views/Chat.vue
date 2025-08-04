@@ -1,17 +1,17 @@
 <template>
   <div class="wechat-container">
     <!-- 移动端菜单按钮 -->
-    <div class="mobile-menu-btn" @click="toggleSidebar">
+    <div class="mobile-menu-btn" @click.stop="toggleSidebar">
       <i class="iconfont icon-menu"></i>
     </div>
 
     <!-- 移动端遮罩层 -->
-    <div class="mobile-overlay" :class="{ show: showSidebar }" @click="toggleSidebar"></div>
+    <div class="mobile-overlay" :class="{ show: showSidebar }" @click="closeSidebar"></div>
 
     <!-- 左侧边栏 -->
     <div class="sidebar" :class="{ show: showSidebar }">
       <!-- 移动端关闭按钮 -->
-      <div class="mobile-close-btn" @click="toggleSidebar">
+      <div class="mobile-close-btn" @click.stop="toggleSidebar">
         <i class="iconfont icon-close"></i>
       </div>
 
@@ -21,10 +21,10 @@
           <Avatar :src="authStore.user?.avatar" size="medium" />
         </div>
         <div class="user-actions">
-          <button class="action-btn" @click="goToProfile" aria-label="个人资料">
+          <button class="action-btn" @click.stop="goToProfile" aria-label="个人资料">
             <i class="iconfont icon-user"></i>
           </button>
-          <button class="action-btn" @click="goToSettings" aria-label="设置">
+          <button class="action-btn" @click.stop="goToSettings" aria-label="设置">
             <i class="iconfont icon-settings"></i>
           </button>
         </div>
@@ -45,15 +45,15 @@
 
       <!-- 功能按钮 -->
       <div class="function-buttons">
-        <button class="function-btn" @click="goToAddFriend" aria-label="添加好友">
+        <button class="function-btn" @click.stop="goToAddFriend" aria-label="添加好友">
           <i class="iconfont icon-add"></i>
           <span>添加好友</span>
         </button>
-        <button class="function-btn" @click="goToGroupChat" aria-label="群聊">
+        <button class="function-btn" @click.stop="goToGroupChat" aria-label="群聊">
           <i class="iconfont icon-group"></i>
           <span>群聊</span>
         </button>
-        <button class="function-btn" @click="goToMoments" aria-label="朋友圈">
+        <button class="function-btn" @click.stop="goToMoments" aria-label="朋友圈">
           <i class="iconfont icon-moments"></i>
           <span>朋友圈</span>
         </button>
@@ -66,7 +66,7 @@
           :key="`${chat.type}-${chat.id}`"
           class="chat-item"
           :class="{ active: currentChat?.type === chat.type && currentChat?.id === chat.id }"
-          @click="selectChat(chat)"
+          @click.stop="selectChat(chat)"
         >
           <div class="chat-avatar">
             <Avatar :src="chat.avatar" size="medium" />
@@ -575,6 +575,11 @@ const goToMoments = () => {
 // 切换侧边栏显示
 const toggleSidebar = () => {
   showSidebar.value = !showSidebar.value
+}
+
+// 关闭侧边栏
+const closeSidebar = () => {
+  showSidebar.value = false
 }
 
 // 滚动到底部
@@ -1461,13 +1466,15 @@ watch(messages, () => {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 99;
+  z-index: 98;
   opacity: 0;
   transition: opacity 0.3s;
+  pointer-events: none;
 }
 
 .mobile-overlay.show {
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* 滚动条样式 */
@@ -1493,7 +1500,7 @@ watch(messages, () => {
   .sidebar {
     width: 100%;
     position: absolute;
-    z-index: 100;
+    z-index: 99;
     transform: translateX(-100%);
     transition: transform 0.3s;
   }
@@ -1516,6 +1523,20 @@ watch(messages, () => {
 
   .mobile-overlay {
     display: block !important;
+  }
+}
+
+/* 桌面端隐藏移动端元素 */
+@media (min-width: 769px) {
+  .mobile-menu-btn,
+  .mobile-close-btn,
+  .mobile-overlay {
+    display: none !important;
+  }
+  
+  /* 桌面端侧边栏始终显示 */
+  .sidebar {
+    transform: translateX(0) !important;
   }
 }
 </style> 
