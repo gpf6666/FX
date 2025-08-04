@@ -1,7 +1,20 @@
 <template>
   <div class="wechat-container">
+    <!-- 移动端菜单按钮 -->
+    <div class="mobile-menu-btn" @click="toggleSidebar">
+      <i class="iconfont icon-menu"></i>
+    </div>
+
+    <!-- 移动端遮罩层 -->
+    <div class="mobile-overlay" :class="{ show: showSidebar }" @click="toggleSidebar"></div>
+
     <!-- 左侧边栏 -->
-    <div class="sidebar">
+    <div class="sidebar" :class="{ show: showSidebar }">
+      <!-- 移动端关闭按钮 -->
+      <div class="mobile-close-btn" @click="toggleSidebar">
+        <i class="iconfont icon-close"></i>
+      </div>
+
       <!-- 用户信息头部 -->
       <div class="sidebar-header">
         <div class="user-avatar">
@@ -266,6 +279,7 @@ const loading = ref(false)
 const hasMoreMessages = ref(true)
 const page = ref(1)
 const pageSize = 20
+const showSidebar = ref(false) // 新增：控制侧边栏显示，移动端默认隐藏
 
 // 聊天列表数据
 const chats = ref([])
@@ -558,6 +572,11 @@ const goToMoments = () => {
   router.push('/moments')
 }
 
+// 切换侧边栏显示
+const toggleSidebar = () => {
+  showSidebar.value = !showSidebar.value
+}
+
 // 滚动到底部
 const scrollToBottom = () => {
   if (messagesContainer.value) {
@@ -784,6 +803,10 @@ const handleUserStatus = (data) => {
 }
 
 onMounted(async () => {
+  // 检测屏幕尺寸，桌面端默认显示侧边栏
+  const isMobile = window.innerWidth <= 768
+  showSidebar.value = !isMobile
+
   // 连接Socket
   if (authStore.user?.id || authStore.user?._id) {
     socketStore.connect(authStore.user?.id || authStore.user?._id)
@@ -1375,6 +1398,78 @@ watch(messages, () => {
   background-color: #129611;
 }
 
+/* 移动端菜单按钮样式 */
+.mobile-menu-btn {
+  display: none; /* 默认隐藏 */
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  background-color: #2f3237;
+  border: 1px solid #3a3f4c;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mobile-menu-btn:hover {
+  background-color: #3a3f4c;
+}
+
+.mobile-menu-btn i {
+  font-size: 20px;
+  color: #fff;
+}
+
+/* 移动端关闭按钮样式 */
+.mobile-close-btn {
+  display: none; /* 默认隐藏 */
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  background-color: #2f3237;
+  border: 1px solid #3a3f4c;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mobile-close-btn:hover {
+  background-color: #3a3f4c;
+}
+
+.mobile-close-btn i {
+  font-size: 20px;
+  color: #fff;
+}
+
+/* 移动端遮罩层样式 */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.mobile-overlay.show {
+  opacity: 1;
+}
+
 /* 滚动条样式 */
 ::-webkit-scrollbar {
   width: 6px;
@@ -1409,6 +1504,18 @@ watch(messages, () => {
   
   .main-chat {
     width: 100%;
+  }
+
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+
+  .mobile-close-btn {
+    display: flex !important;
+  }
+
+  .mobile-overlay {
+    display: block !important;
   }
 }
 </style> 

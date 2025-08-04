@@ -188,4 +188,14 @@
   content: "📱";
 }
 
+/* 菜单图标 */
+.icon-menu:before {
+  content: "☰";
+}
+
+/* 关闭图标 */
+.icon-close:before {
+  content: "✕";
+}
+
  
