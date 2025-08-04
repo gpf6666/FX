@@ -33,7 +33,7 @@
           <div class="group-info">
             <div class="group-name">{{ group.name }}</div>
             <div class="group-members">{{ group.members.length }}人</div>
-            <div class="group-last-message">{{ group.lastMessage || '暂无消息' }}</div>
+            <div class="group-last-message">{{ group.lastMessage || '' }}</div>
           </div>
           <div class="group-time">{{ formatTime(group.lastMessageTime) }}</div>
         </div>

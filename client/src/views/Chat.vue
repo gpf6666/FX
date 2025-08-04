@@ -63,7 +63,7 @@
           </div>
           <div class="chat-info">
             <div class="chat-name">{{ chat.name }}</div>
-            <div class="chat-last-message">{{ chat.lastMessage || '暂无消息' }}</div>
+            <div class="chat-last-message">{{ chat.lastMessage || '' }}</div>
           </div>
           <div class="chat-time">{{ formatChatTime(chat.lastTime) }}</div>
         </div>
